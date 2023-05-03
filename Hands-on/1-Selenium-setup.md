@@ -30,7 +30,7 @@
 
 ## SELENIUM SETUP IN ECLIPSE
 
-**This documentation is divided into three parts:
+**This documentation is divided into three parts:**
 
 1. **Java JDK installation**
 2. **Eclipse installation**
