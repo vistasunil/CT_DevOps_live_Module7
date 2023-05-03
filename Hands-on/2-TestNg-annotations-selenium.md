@@ -32,7 +32,7 @@
 
 ### The agenda of this demonstration
 
-The example below verifies the title of the [CloudTrain Home Page](https://www.browserstack.com/). The entire test case has been split into 3 parts.
+The example below verifies the title of the [CloudTrain Home Page](https://www.thecloudtrain.com/). The entire test case has been split into 3 parts.
 
 - Launching the browser will be the first step and hence it is included under the  **@BeforeTest**  Annotation.
 - Next is the actual test case which verifies the title, and is therefore included in the  **@Test**  annotation.
@@ -44,17 +44,21 @@ The example below verifies the title of the [CloudTrain Home Page](https://www.b
 
 ![image](https://user-images.githubusercontent.com/37858762/236047562-aacbafa0-f966-4100-bab3-b76e5b8374ef.png)
 
+
 ### Step 2:  A new window would open up, wherein you need to type "TestNG" in the Find text box and click on the Go button.
 
 ![image](https://user-images.githubusercontent.com/37858762/236047525-85f03133-0887-4b1f-8c5b-6aefe988e71c.png)
+
 
 ### Step 3:  You will now see the search results with TestNG for Eclipse at the top. All you need to do now is click on the Install button next to it.
 
 ![image](https://user-images.githubusercontent.com/37858762/236047496-cdfe96c7-f9dc-41ea-b675-6a79f17cddf9.png)
 
+
 ### Step 4: Resolving of features might take up a few minutes after which you need to verify that the checkbox for TestNG is checked and click on the Confirm button.
 
 ![image](https://user-images.githubusercontent.com/37858762/236047450-ea1ace66-508d-4f37-97b2-63b65a3f7cf3.png)
+
 
 ### Step 5:  Select **Keep my installation the same** option and again click on the **Confirm** button.
 
@@ -67,6 +71,7 @@ The example below verifies the title of the [CloudTrain Home Page](https://www.b
 **Note:  For the change to be effective, you will have to restart Eclipse and you will now be able to see TestNG installed by right-clicking on any project and seeing TestNG in the menu options.**
 
 ![image](https://user-images.githubusercontent.com/37858762/236047367-44526adb-6041-4621-830e-c7ae8bdbdf48.png)
+
 
 ### Step 7: In eclipse you need to add testng library to your project after installation. Right click on project --\> build path --\> Add Libraries --\> TestNG library.
 
@@ -110,9 +115,11 @@ public class Test1 {
 
 ![image](https://user-images.githubusercontent.com/37858762/236047297-6817746c-1ab9-4b84-8628-32d6f493cb81.png)
 
+
 ### Step 8: On executing the code above, the output looks as follows:
 
 ![image](https://user-images.githubusercontent.com/37858762/236047226-6f8c2759-b10c-4639-a7bc-ab46c772fbdf.png)
+
 
 ### Step 9:  This is how it works. Now let’s understand how to include @BeforeSuite and @BeforeMethod Annotations.
 
