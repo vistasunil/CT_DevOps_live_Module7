@@ -82,7 +82,7 @@ Here, we have added one time-out of 3 secs.
 ### Step 5: Now in the last search result page we will find a "DevOps – IBM Developer – IBM Developer" and click on the item. If item is not found display a "Item not found" message.
 
 ```
-  String firstData = driver.findElement(By.className("ibm--result-item__title")).getText();
+	String firstData = driver.findElement(By.className("ibm--result-item__title")).getText();
 	String CheckData = "What is DevOps? | IBM";
 	System.out.println(firstData);
 	
@@ -99,22 +99,22 @@ It should look like this:
 
 ![image](https://user-images.githubusercontent.com/37858762/236051330-f3dad063-a467-4511-a40e-9a462de4e490.png)
 
-```
-    String actualData = driver.findElement(By.className("bx--type-expressive-heading-05")).getText();
-		String expectedData = "DevOps";
-		System.out.println(actualData);
+```    
+	String actualData = driver.findElement(By.className("bx--type-expressive-heading-05")).getText();
+	String expectedData = "DevOps";
+	System.out.println(actualData);
 		
-		if(actualData.equals(expectedData)) {
-			System.out.println("Found String!\n---------------");			
-			String products = driver.findElement(By.className("ibm-link-list")).getText();
-			String whyIbm = driver.findElement(By.className("ibm-plain-list")).getText();
-			System.out.println("Featured Products: \n"+ products + "\nWhy IBM:\n---------------\n" + "\n"+ whyIbm);
-			System.out.println("---------------\nTest Successful");
-			//driver.close();	
-		}
-		else {
-			System.out.println("Oops!! String Not Found.");
-		}
+	if(actualData.equals(expectedData)) {
+		System.out.println("Found String!\n---------------");			
+		String products = driver.findElement(By.className("ibm-link-list")).getText();
+		String whyIbm = driver.findElement(By.className("ibm-plain-list")).getText();
+		System.out.println("Featured Products: \n"+ products + "\nWhy IBM:\n---------------\n" + "\n"+ whyIbm);
+		System.out.println("---------------\nTest Successful");
+		//driver.close();	
+	}
+	else {
+		System.out.println("Oops!! String Not Found.");
+	}
 ```
 
 ### Step 6: In that last search result page we will check if the Item Title matches to our Desired Event Title or not, if matches display one message and display the Upcoming events for that item.
