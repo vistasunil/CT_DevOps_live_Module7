@@ -32,9 +32,9 @@
 
 **This documentation is divided into three parts:
 
-- 1. **Java JDK installation**
-- 2. **Eclipse installation**
-- 3. **Selenium Test Case**
+1. **Java JDK installation**
+2. **Eclipse installation**
+3. **Selenium Test Case**
 
 ## 1. Install Java JDK
 
