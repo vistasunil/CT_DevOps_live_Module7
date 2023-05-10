@@ -36,7 +36,7 @@
 1. Write Selenium code to perform retrieve the title of home page of [https://www.ibm.com/in-en](https://www.ibm.com/in-en)
 2. Test using Selenium code that the title of the home page is "IBM - India | IBM"
 
-**Note: Use document to re-use and update the code accordingly or find the code on github: [Cloudtrain Selenium GitHub Repo](https://github.com/vistasunil/selenium.git) (testing.java)
+**Note: Use document to re-use and update the code accordingly or find the code on github: [Cloudtrain Selenium GitHub Repo](https://github.com/vistasunil/selenium.git) (testing.java)**
 
 ## Exercise 3: Case Study
 
@@ -48,4 +48,4 @@
 4. On the course page, verify if in the page "DevOps – IBM Developer – IBM Developer" is present as the header
 5. In that last search result page we will check if the Item Title matches to our Desired Event Title or not, if matches display one message and display the Upcoming events for that item.
 
-**Note: Use document to re-use and update the code accordingly or find the code on github: [Cloudtrain Selenium GitHub Repo](https://github.com/vistasunil/selenium.git) (App.java)
+**Note: Use document to re-use and update the code accordingly or find the code on github: [Cloudtrain Selenium GitHub Repo](https://github.com/vistasunil/selenium.git) (App.java)**
