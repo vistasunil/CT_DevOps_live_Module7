@@ -114,6 +114,10 @@ https://www.eclipse.org/downloads/
 
 ![image](https://user-images.githubusercontent.com/37858762/236044200-0ea5ebbe-c971-4455-92a3-359242a363d1.png)
 
+_**Note:** If running on mac, then running below command to allow it run from unknown developer:_\
+
+`xattr -d com.apple.quarantine chromedriver`
+
 Start a new Maven Project.
 
 ![image](https://user-images.githubusercontent.com/37858762/236044217-0b728354-4c27-4b5e-906c-d87bf21435d7.png)
