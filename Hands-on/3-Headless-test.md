@@ -63,12 +63,11 @@ public class headlessDemo {
         driver.close();
     }
 }
-
-### Refer [Selelinu GitHub Repo](https://github.com/vistasunil/selenium.git) for all source codes.
-
 ```
 ![image](https://user-images.githubusercontent.com/37858762/236048694-c1d53263-1a52-46cc-8413-8fe57473910c.png)
 
 ### Step 2: On executing the code above, the output looks as follows:
 
 ![image](https://user-images.githubusercontent.com/37858762/236048726-b4d700e9-6ec8-4806-a847-b43dd2d6daa9.png)
+
+### Refer [Selelinu GitHub Repo](https://github.com/vistasunil/selenium.git) for all source codes.
