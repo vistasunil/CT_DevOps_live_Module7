@@ -110,7 +110,7 @@ https://www.eclipse.org/downloads/
 
 ## 3. Selenium Test Case
 
-### Step 1: Download and extract chromedriver.exe from zip file downloaded from [Selenium Download Page](https://chromedriver.chromium.org/downloads) to any location say C:\ drive:
+### Step 1: Download and extract chromedriver.exe from zip file downloaded from [Selenium Download Page for version below 115](https://chromedriver.chromium.org/downloads) and [for chromeversions above 115 click here](https://googlechromelabs.github.io/chrome-for-testing/) to any location say C:\ drive:
 
 ![image](https://user-images.githubusercontent.com/37858762/236044200-0ea5ebbe-c971-4455-92a3-359242a363d1.png)
 
