@@ -157,27 +157,33 @@ Before adding the dependencies, the Pom.xml file looks like this:
 ### Step 8: Now go ahead and add the below dependencies to the **pom.xml** file.
 
 ```
-<dependencies>
-  <!-- Selenium -->
-  <dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-java</artifactId>
-    <version>3.4.0</version>
-  </dependency>
-  <!-- TestNG -->
-  <dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>6.8</version>
-    <scope>test</scope>
-  </dependency>
-  <!-- Selenium Server-->
-  <dependency>
-    <groupId>org.seleniumhq.selenium</groupId>
-    <artifactId>selenium-server</artifactId>
-    <version>3.141.59</version>
-  </dependency>
-</dependencies>
+	<dependencies>
+	  <!-- Selenium -->
+	  <dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+	    <artifactId>selenium-java</artifactId>
+	    <version>3.4.0</version>
+	  </dependency>
+	  <!-- TestNG -->
+	  <dependency>
+	    <groupId>org.testng</groupId>
+	    <artifactId>testng</artifactId>
+	    <version>7.8.0</version>
+	    <scope>test</scope>
+	  </dependency>
+	  <!-- Selenium Server-->
+	  <dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+	    <artifactId>selenium-server</artifactId>
+	    <version>3.141.59</version>
+	  </dependency>
+	</dependencies>
+	<properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+	    <maven.compiler.source>1.8</maven.compiler.source>
+	    <maven.compiler.target>1.8</maven.compiler.target>
+	    <failOnMissingWebXml>false</failOnMissingWebXml>
+	</properties>
 ```
 Add the dependencies in between **\<project\> \</project\>** tags.
 
