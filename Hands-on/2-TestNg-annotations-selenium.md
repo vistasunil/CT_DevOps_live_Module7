@@ -80,27 +80,28 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 public class Test1 {
-  public String baseUrl = " https://www.thecloudtrain.com";
-  String driverPath = "C:\\chromedriver.exe";
-  public WebDriver driver ;
-  
+  public String baseUrl = "https://www.thecloudtrain.com";
+  public WebDriver driver;
+
   @BeforeTest
   public void launchBrowser() {
     System.out.println("launching Chrome browser");
-    System.setProperty("webdriver.chrome.driver", driverPath);
+    // Selenium Manager resolves chromedriver automatically (Selenium 4.6+),
+    // so no driver path or System.setProperty() is needed.
     driver = new ChromeDriver();
     driver.get(baseUrl);
   }
+
   @Test
   public void verifyHomepageTitle() {
-    String expectedTitle = " DevOps Workshop | Cloudtrain";
+    String expectedTitle = "DevOps Workshop | Cloudtrain";
     String actualTitle = driver.getTitle();
     Assert.assertEquals(actualTitle, expectedTitle);
   }
-  
+
   @AfterTest
-  public void terminateBrowser(){
-    driver.close();
+  public void terminateBrowser() {
+    driver.quit();
   }
 }
 ```

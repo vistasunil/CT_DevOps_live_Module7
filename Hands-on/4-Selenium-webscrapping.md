@@ -53,18 +53,21 @@ This command will open the IBM website and then it will maximize the browser win
 ### Step 3: Import the following before moving ahead.
 
 ```
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.By;
 ```
+
+> **Note:** `driver.manage().timeouts().implicitlyWait(long, TimeUnit)` was removed in
+> Selenium 4. Use the `java.time.Duration` overload shown below.
 
 ![image](https://user-images.githubusercontent.com/37858762/236051250-bd18cb87-c651-4f00-a4c4-a144c16779d2.png)
 
 ### Step 4: Now we will find the search input element in the website, inspect the element, find the class name, also find the id of the search click button by inspecting.
 
 ```
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 driver.findElement(By.id("q")).sendKeys("DevOps");
 driver.findElement(By.className("ibm-search-link")).click();
-driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
 ```
 
 Here, we have added one time-out of 3 secs.
@@ -80,7 +83,7 @@ Here, we have added one time-out of 3 secs.
 	
 	if(firstData.equals(CheckData)) {
 		driver.findElement(By.className("ibm--result-item__title")).click();
-		driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 	}
 	else {
 		System.out.println("Item not found");
@@ -140,46 +143,46 @@ Finally lands on the item page. And then window gets closed.
 
 ```
 package test;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class App {
 	public static void main(String[] args) {
-		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		// Selenium Manager resolves chromedriver automatically (Selenium 4.6+)
 		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		driver.get("https://www.ibm.com");
-		driver.manage().window().maximize();		
+		driver.manage().window().maximize();
 		driver.findElement(By.id("q")).sendKeys("Introduction to DevOps Capabilities");
 		driver.findElement(By.className("ibm-search-link")).click();
-		driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-		
+
 		String firstData = driver.findElement(By.className("ibm--result-item__title")).getText();
 		String CheckData = "Introduction to DevOps Capabilities";
-		
+
 		if(firstData.equals(CheckData)) {
 			driver.findElement(By.className("ibm--result-item__title")).click();
-			driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
 		}
 		else {
 			System.out.println("Course not found");
 		}
-	    
+
 		driver.findElement(By.className("bx--btn--secondary")).click();
 		String actualData = driver.findElement(By.className("pl-header-subtitle")).getText();
 		String expectedData = "Course code: C120019G";
-		
+
 		if(actualData.equals(expectedData)) {
-			System.out.println("Found Course!");			
+			System.out.println("Found Course!");
 			String dateView = driver.findElement(By.className("course-card-icons")).getText();
-			System.out.println("Course Details: \n"+ dateView + "\n"); 
+			System.out.println("Course Details: \n"+ dateView + "\n");
 			System.out.println("Test Successful");
-			driver.close();	
 		}
 		else {
 			System.out.println("Oops!! String Not Found.");
-		}		
+		}
+
+		driver.quit();
 	}
 }
 ```
@@ -189,35 +192,32 @@ public class App {
 ```
 package test;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class App {
 
 	public static void main(String[] args) {
-		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-		WebDriver driver;
-		driver = new ChromeDriver();
+		// Selenium Manager resolves chromedriver automatically (Selenium 4.6+)
+		WebDriver driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
 		driver.get("https://bing.com");
 		driver.manage().window().maximize();
-		
+
 		driver.findElement(By.name("q")).sendKeys("DevOps");
 		driver.findElement(By.id("search_icon")).click();
-		driver.manage().timeouts().implicitlyWait(8,TimeUnit.SECONDS);
-		
+
 		String firstData = driver.findElement(By.className("b_algo")).getText();
 		String CheckData = "What is DevOps? DevOps Explained | Microsoft Azure";
 		System.out.println(firstData);
 		String[] arrOfStr = firstData.split("\n",0);
-		System.out.println(arrOfStr[0]);	
+		System.out.println(arrOfStr[0]);
 
 		if(arrOfStr[0].equals(CheckData)) {
 			driver.findElement(By.className("b_title")).click();
-			driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
 		}
 		else {
 			System.out.println("Item not found");
@@ -225,8 +225,8 @@ public class App {
 
 		String items = driver.findElement(By.id("global-subnav")).getText();
 		System.out.println(items);
-		
-		driver.close();
+
+		driver.quit();
 
 	}
 

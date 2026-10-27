@@ -28,15 +28,24 @@
 2. **Eclipse installation**
 3. **Selenium Test Case**
 
+> **Note:** this module runs on **Windows**. Selenium 4 requires **Java 11 or newer**;
+> these labs use **JDK 21 LTS**.
+
 ## 1. Install Java JDK
 
-### Step 1: Download java jdk.
+### Step 1: Download a JDK 21 LTS build.
 
-https://www.oracle.com/technetwork/java/javase/downloads/index.html
+Any of these work - Eclipse Temurin is recommended because its Windows installer sets
+`JAVA_HOME` and updates `PATH` for you:
+
+* **Eclipse Temurin 21 (LTS, recommended):** <https://adoptium.net/temurin/releases/?version=21>
+* **Oracle JDK 21 (LTS):** <https://www.oracle.com/java/technologies/downloads/#java21>
+
+Download the **Windows x64 MSI installer**.
 
 ![image](https://user-images.githubusercontent.com/37858762/236043748-2f82c736-b77c-47a4-8c34-0deae38471bc.png)
 
-Then Click on the oracle Jdk Download button, you will land on a page as shown below. Accept the License Agreement. Download the .exe file.
+Accept the License Agreement and download the installer.
 
 ![image](https://user-images.githubusercontent.com/37858762/236043763-07629117-4744-4adf-a265-2084f2040537.png)
 
@@ -45,6 +54,9 @@ Then Click on the oracle Jdk Download button, you will land on a page as shown b
 ![image](https://user-images.githubusercontent.com/37858762/236043796-6fd979de-7af8-47cd-a7d4-3b56ec75ee05.png)
 
 ### Step 3: Select **Developers Tools** and click **Next**.
+
+If you are using the Temurin installer, also enable **Set JAVA_HOME variable** and
+**Add to PATH** - that makes steps 5-9 below unnecessary.
 
 ![image](https://user-images.githubusercontent.com/37858762/236043834-48334777-dcad-4616-bcd4-5073ac0199c7.png)
 
@@ -56,25 +68,30 @@ Then Click on the oracle Jdk Download button, you will land on a page as shown b
 
 ![image](https://user-images.githubusercontent.com/37858762/236043871-a2fd9e38-8c6d-422e-831f-4303ddcf920d.png)
 
-### Step 5: Before moving ahead, we need **to add the environment variables to the path** as follows. Go to local **C drive**  Program Files java  **jdk-16.0.1**  **bin**
+### Step 5: If the installer did not update the environment variables, do it manually. Go to local **C drive** → **Program Files** → **Eclipse Adoptium** (or **Java**) → **jdk-21** → **bin**
 
 ![image](https://user-images.githubusercontent.com/37858762/236043907-fa0ebf57-4ce2-40f1-9821-6579a32ed6e0.png)
 
-### Step 6: Copy the path as shown above. ### Step 7: Go to **Control Panel**  **System and Security**  **System**  **Advanced System Settings**
+### Step 6: Copy the path as shown above. ### Step 7: Go to **Control Panel** → **System and Security** → **System** → **Advanced System Settings**
 
 ![image](https://user-images.githubusercontent.com/37858762/236043927-c0187ca9-ffc9-45aa-84aa-5f5e9985c39c.png)
 
 ### Step 8: Click on **Environment Variables.**
 
+Add a new system variable `JAVA_HOME` pointing at the JDK folder (for example
+`C:\Program Files\Eclipse Adoptium\jdk-21`).
+
 ![image](https://user-images.githubusercontent.com/37858762/236043968-4f252c3b-0c4b-48f4-8ba6-4d2fd0a03dbb.png)
 
-### Step 9: Click on Path in the System Variables section. And then paste the previously copied path (_ **C:\Program Files\Java\jdk-16.0.1\bin** _) as shown below.
+### Step 9: Click on Path in the System Variables section. And then paste the previously copied path (_ **%JAVA_HOME%\bin** _) as shown below.
 
 ![image](https://user-images.githubusercontent.com/37858762/236043993-86358e57-4bd8-439c-b9ac-dac3635cc6f1.png)
 
 ### Step 10: Now open **command prompt** and run the following command.
 
 `java -version`
+
+It should report `openjdk version "21.x.x"` (or `java version "21.x.x"` for Oracle JDK).
 
 ![image](https://user-images.githubusercontent.com/37858762/236044029-4730c7f9-7697-4085-b20d-5178a69124ab.png)
 
@@ -110,11 +127,20 @@ https://www.eclipse.org/downloads/
 
 ## 3. Selenium Test Case
 
-### Step 1: Download and extract chromedriver.exe from zip file downloaded from [Selenium Download Page for version below 115](https://chromedriver.chromium.org/downloads) and [for chromeversions above 115 click here](https://googlechromelabs.github.io/chrome-for-testing/) to any location say C:\ drive:
+### Step 1: Install Google Chrome (latest stable) on the machine.
+
+**You no longer need to download `chromedriver.exe` manually.** Since Selenium 4.6,
+**Selenium Manager** is built into the Selenium Java bindings and automatically downloads
+the matching driver for the browser installed on your machine. Any
+`System.setProperty("webdriver.chrome.driver", ...)` line is obsolete and should be removed.
+
+_(For reference only – if you are behind a proxy that blocks Selenium Manager, you can
+still download a matching driver manually from the
+[Chrome for Testing availability page](https://googlechromelabs.github.io/chrome-for-testing/).)_
 
 ![image](https://user-images.githubusercontent.com/37858762/236044200-0ea5ebbe-c971-4455-92a3-359242a363d1.png)
 
-_**Note:** If running on mac, then running below command to allow it run from unknown developer:_\
+_**Note:** If running on mac, then run the below command to allow it run from unknown developer:_\
 
 `xattr -d com.apple.quarantine chromedriver`
 
@@ -157,34 +183,37 @@ Before adding the dependencies, the Pom.xml file looks like this:
 ### Step 8: Now go ahead and add the below dependencies to the **pom.xml** file.
 
 ```
+	<properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <maven.compiler.release>21</maven.compiler.release>
+	    <selenium.version>4.27.0</selenium.version>
+	    <testng.version>7.10.2</testng.version>
+	    <failOnMissingWebXml>false</failOnMissingWebXml>
+	</properties>
 	<dependencies>
-	  <!-- Selenium -->
+	  <!-- Selenium (includes Selenium Manager - no chromedriver download needed) -->
 	  <dependency>
 	    <groupId>org.seleniumhq.selenium</groupId>
 	    <artifactId>selenium-java</artifactId>
-	    <version>3.4.0</version>
+	    <version>${selenium.version}</version>
 	  </dependency>
 	  <!-- TestNG -->
 	  <dependency>
 	    <groupId>org.testng</groupId>
 	    <artifactId>testng</artifactId>
-	    <version>7.8.0</version>
+	    <version>${testng.version}</version>
 	    <scope>test</scope>
 	  </dependency>
-	  <!-- Selenium Server-->
-	  <dependency>
-	    <groupId>org.seleniumhq.selenium</groupId>
-	    <artifactId>selenium-server</artifactId>
-	    <version>3.141.59</version>
-	  </dependency>
 	</dependencies>
-	<properties>
-	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
-	    <maven.compiler.source>1.8</maven.compiler.source>
-	    <maven.compiler.target>1.8</maven.compiler.target>
-	    <failOnMissingWebXml>false</failOnMissingWebXml>
-	</properties>
 ```
+
+> **Notes**
+> * Selenium 3.x is end-of-life; these labs use Selenium 4.
+> * The separate `selenium-server` dependency is **not** needed for local tests – it is only
+>   used when running a Selenium Grid.
+> * Check <https://central.sonatype.com/artifact/org.seleniumhq.selenium/selenium-java>
+>   for the newest release and bump `selenium.version` accordingly.
+
 Add the dependencies in between **\<project\> \</project\>** tags.
 
 Refer to the below given image.
@@ -192,10 +221,10 @@ Refer to the below given image.
 ![image](https://user-images.githubusercontent.com/37858762/236044490-b9041a42-ce6f-451c-89ba-76b0deaa892e.png)
 
 ```
-System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 WebDriver driver = new ChromeDriver();
 driver.get("http://www.gmail.com/");
 System.out.println("Test Successful");
+driver.quit();
 ```
 
 ### Step 9: Now, add the below given script to the **main() function** to the **App.java** file.

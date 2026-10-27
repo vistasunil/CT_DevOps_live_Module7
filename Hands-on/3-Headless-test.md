@@ -41,26 +41,28 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class headlessDemo {
 
     public static void main(String[] args) {
-        //declare the chrome driver from the local machine location
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-       
+        // Selenium Manager (built into Selenium 4.6+) resolves chromedriver automatically,
+        // so no System.setProperty("webdriver.chrome.driver", ...) is required.
+
         //create object of chrome options
         ChromeOptions options = new ChromeOptions();
-        
-        //add the headless argument
-        options.addArguments("headless");
-        
+
+        //add the headless argument (the new headless mode, Chrome 109+)
+        options.addArguments("--headless=new");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+
         //pass the options parameter in the Chrome driver declaration
         WebDriver driver = new ChromeDriver(options);
-        
-        //Navigate to toolsQA site url
+
+        //Navigate to the site url
         driver.get("https://www.thecloudtrain.com");
-        
+
         //Print the Title of the Page
         System.out.println("Title of the page is -> " + driver.getTitle());
-        
-        //Close the driver
-        driver.close();
+
+        //Quit the driver (releases the browser and the driver process)
+        driver.quit();
     }
 }
 ```
